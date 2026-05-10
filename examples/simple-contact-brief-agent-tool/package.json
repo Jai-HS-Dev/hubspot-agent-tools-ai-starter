@@ -1,0 +1,14 @@
+{
+  "name": "simple-contact-brief-agent-tool",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hosting-neutral HubSpot agent tool example with mock data by default.",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check src/app/workflow-actions/contact-brief.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

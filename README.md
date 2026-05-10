@@ -70,6 +70,7 @@ This installs HubSpot's command-line tool so your terminal can create, validate,
 ## Repo Contents
 
 - `AGENTS.md`: instructions for AI coding agents.
+- `examples/simple-contact-brief-agent-tool/`: a real starter example for a HubSpot agent tool backed by a hosting-neutral HTTP endpoint.
 - `docs/start-here.md`: beginner workflow.
 - `docs/choose-your-path.md`: decisions before building.
 - `docs/security-for-non-developers.md`: plain-English security guide.
@@ -81,3 +82,17 @@ This installs HubSpot's command-line tool so your terminal can create, validate,
 
 Before using any code or generated tool with real customer data, validate your own HubSpot scopes, hosting security, authentication, logging, privacy requirements, data retention, and compliance needs.
 
+## Example Included
+
+The example starts with mock data so users can understand the flow before connecting to HubSpot CRM data:
+
+```text
+examples/simple-contact-brief-agent-tool/
+```
+
+It includes:
+
+- HubSpot project metadata placeholders.
+- A sample agent-tool/workflow-action definition.
+- A small Node HTTP endpoint that can be adapted to Cloudflare, Vercel, Railway, Render, AWS, Azure, Google Cloud, or another host.
+- AI instructions that tell coding tools how to safely customize it.
