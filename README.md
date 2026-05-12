@@ -1,15 +1,106 @@
 # HubSpot Agent Tools AI Starter
 
-This is a community starter kit for learning how to build HubSpot agent tools with help from an AI coding assistant.
+Build HubSpot agent tools and workflow-action-style endpoints with help from any AI coding tool.
 
-It is written for developers, non-developers, and vibe coders who want a safe starting point they can give to Codex, Claude Code, GitHub Copilot, Gemini CLI, Cursor, Windsurf, or another coding assistant.
+This starter is for three kinds of users:
+
+- Non-developers who want an AI assistant to guide them one step at a time.
+- Vibe coders who want to prototype real HubSpot tools without getting trapped by unsafe token handling.
+- Developers who want clean contracts, mock-first examples, and portable hosting patterns.
+
+This repo is AI-tool-neutral and hosting-neutral. It can be used with Codex, Cursor, Claude Code, GitHub Copilot, Gemini CLI, Windsurf, or another coding assistant. It can be adapted to Cloudflare, Vercel, Netlify, Railway, Render, AWS, Azure, Google Cloud, a VPS, or HubSpot project functions where appropriate.
+
+## Quick Start
+
+If you are using an AI coding tool, start here:
+
+```text
+Read START_WITH_AI.md first, then README.md, AGENTS.md, docs/start-here.md, docs/non-developer-safety-gates.md, and docs/security-for-non-developers.md.
+
+Ask me one question at a time. Start with mock data. Do not ask me to paste secrets, access tokens, refresh tokens, client secrets, portal IDs, private URLs, or customer data into chat.
+
+Help me build a real HubSpot agent tool safely.
+```
+
+Then run the local checks:
+
+```bash
+npm run check:ai
+npm run smoke:example
+```
+
+On Windows PowerShell, if `npm` is blocked by script policy, use:
+
+```powershell
+npm.cmd run check:ai
+npm.cmd run smoke:example
+```
+
+## Pick Your Path
+
+### I Am A Non-Developer
+
+Start with these files:
+
+- `START_WITH_AI.md`: paste this into your AI tool.
+- `docs/non-developer-safety-gates.md`: plain-English safety steps.
+- `docs/security-for-non-developers.md`: what never to paste into chat.
+- `docs/choose-your-path.md`: helps choose mock data, OAuth, private-token testing, or another path.
+- `REAL_TOOL_CHECKLIST.md`: tells you when the result is becoming a real usable tool.
+
+Your safest path is mock data first, then choose auth and hosting after the behavior works.
+
+### I Am Vibe Coding
+
+Start with:
+
+- `recipes/contact-summary/`
+- `recipes/search-contacts/`
+- `recipes/meeting-follow-up/`
+- `.github/prompts/build-my-first-hubspot-feature.prompt.md`
+- `.github/prompts/turn-mock-into-real-hubspot-api.prompt.md`
+
+Use recipes to give your AI assistant a clear target. Ask it to keep mock mode available while it adds real HubSpot API access.
+
+### I Am A Developer
+
+Start with:
+
+- `docs/developer-architecture.md`
+- `docs/contracts/agent-tool-contract.md`
+- `examples/simple-contact-brief-agent-tool/`
+- `scripts/ai-readiness-check.js`
+- `scripts/smoke-example.js`
+
+The included example is a small Node HTTP endpoint with mock data by default. It can be adapted to serverless or long-running hosts.
+
+## If You Are An AI Coding Tool
+
+Read these first, in order:
+
+1. `AGENTS.md`
+2. `START_WITH_AI.md`
+3. `docs/non-developer-safety-gates.md`
+4. `docs/security-for-non-developers.md`
+5. `docs/contracts/agent-tool-contract.md`
+6. The relevant `recipes/*/README.md`
+
+Rules:
+
+- Ask one question at a time for non-technical users.
+- Start with mock data.
+- Do not ask for secrets in chat.
+- Do not hard-code real portal IDs, app IDs, account IDs, private URLs, tokens, or customer data.
+- Explain auth and hosting before connecting real HubSpot data.
+- Keep endpoint responses compatible with `docs/contracts/agent-tool-contract.md`.
+- Run `npm run check:ai` and `npm run smoke:example` after meaningful changes.
 
 ## What This Repo Is
 
-- A beginner-friendly guide for planning and building HubSpot agent tools.
+- A beginner-friendly guide for building HubSpot agent tools.
 - An AI-readable project structure with instructions for coding assistants.
-- A security-first checklist for working with HubSpot tokens, OAuth, hosting, and environment variables.
-- A starter reference, not a production-certified app.
+- A mock-first example that can become a real endpoint.
+- A security-first reference for tokens, OAuth, hosting, and environment variables.
 
 ## What This Repo Is Not
 
@@ -18,27 +109,18 @@ It is written for developers, non-developers, and vibe coders who want a safe st
 - It is not a security audit, legal recommendation, or production guarantee.
 - It does not include private deployment URLs, real HubSpot account IDs, access tokens, client secrets, or customer data.
 
-## Start Here
-
-Give your AI coding tool this instruction:
+## Example Included
 
 ```text
-Read this repository before making changes. Start with README.md, AGENTS.md, docs/start-here.md, and docs/security-for-non-developers.md.
-
-Walk me step by step to build a HubSpot agent tool. Ask one question at a time. Do not ask me to paste secrets, tokens, client secrets, refresh tokens, portal IDs, or customer data into chat. When secrets are needed, tell me how to enter them in my terminal, local .env file, or hosting provider secret manager.
+examples/simple-contact-brief-agent-tool/
 ```
 
-## Your First Decisions
+It includes:
 
-Before building, decide:
-
-- What should the agent tool help a HubSpot user do?
-- Does it need HubSpot data access?
-- Will it use OAuth, a private app token for local testing, or another server-side auth method?
-- Where will the server-side endpoint run?
-- What data should never be logged or shown to the browser?
-
-See [docs/choose-your-path.md](docs/choose-your-path.md).
+- HubSpot project metadata placeholders.
+- A sample workflow-action-style definition.
+- A small Node HTTP endpoint using mock data by default.
+- A path to replace mock data with server-side HubSpot API access.
 
 ## Security First
 
@@ -57,42 +139,25 @@ Use placeholders in chat, for example:
 HUBSPOT_CLIENT_SECRET=<stored in hosting secret manager>
 ```
 
-## Suggested Local Tools
+## Real Tool Workflow
 
-Your AI assistant may ask you to install or update the HubSpot CLI:
+1. Start with `START_WITH_AI.md`.
+2. Choose a recipe.
+3. Build and smoke-test mock behavior.
+4. Choose auth and hosting using `docs/auth-options.md` and `docs/hosting-options.md`.
+5. Use `.github/prompts/turn-mock-into-real-hubspot-api.prompt.md` before real API access.
+6. Run `npm run check:ai` and `npm run smoke:example`.
+7. Review `REAL_TOOL_CHECKLIST.md` before using real CRM data.
 
-```bash
-npm install -g @hubspot/cli@latest
-```
+## Repo Map
 
-This installs HubSpot's command-line tool so your terminal can create, validate, and upload HubSpot project files. Do not paste access tokens into the AI chat. Follow terminal prompts or HubSpot's current authentication flow.
-
-## Repo Contents
-
-- `AGENTS.md`: instructions for AI coding agents.
-- `examples/simple-contact-brief-agent-tool/`: a real starter example for a HubSpot agent tool backed by a hosting-neutral HTTP endpoint.
-- `docs/start-here.md`: beginner workflow.
-- `docs/choose-your-path.md`: decisions before building.
-- `docs/security-for-non-developers.md`: plain-English security guide.
-- `docs/agent-tool-blueprint.md`: planning template for a new agent tool.
-- `.github/prompts/start-here.prompt.md`: prompt you can give to an AI coding tool.
-- `.github/ISSUE_TEMPLATE/`: issue forms that warn users not to share secrets.
-
-## Production Reminder
-
-Before using any code or generated tool with real customer data, validate your own HubSpot scopes, hosting security, authentication, logging, privacy requirements, data retention, and compliance needs.
-
-## Example Included
-
-The example starts with mock data so users can understand the flow before connecting to HubSpot CRM data:
-
-```text
-examples/simple-contact-brief-agent-tool/
-```
-
-It includes:
-
-- HubSpot project metadata placeholders.
-- A sample agent-tool/workflow-action definition.
-- A small Node HTTP endpoint that can be adapted to Cloudflare, Vercel, Railway, Render, AWS, Azure, Google Cloud, or another host.
-- AI instructions that tell coding tools how to safely customize it.
+- `AGENTS.md`: primary instructions for AI coding tools.
+- `START_WITH_AI.md`: first prompt for any AI coding tool.
+- `.github/prompts/`: reusable AI task prompts.
+- `.github/instructions/`: GitHub Copilot guidance.
+- `.cursor/rules/`: Cursor guidance.
+- `.windsurfrules`: Windsurf guidance.
+- `docs/`: safety, architecture, auth, hosting, and contracts.
+- `recipes/`: mock-first real feature plans.
+- `examples/`: runnable starter examples.
+- `scripts/`: AI readiness and smoke checks.
