@@ -13,7 +13,7 @@ Help me design a HubSpot agent tool or workflow action by choosing:
 - what the tool does
 - what inputs it needs
 - what HubSpot data it needs
-- whether it uses mock data, a private app token for local testing, or OAuth
+- whether it uses mock data, a Service Key for an eligible single account, or OAuth for reusable apps
 - where the server endpoint should run
 
 Before editing code, create a short tool blueprint. After editing, tell me what changed, what command to run, and what security step I should verify.

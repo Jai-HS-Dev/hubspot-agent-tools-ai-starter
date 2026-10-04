@@ -39,7 +39,7 @@ When moving beyond mock data, ask the AI to document:
 - object type: contact
 - properties: firstname, lastname, company, lifecyclestage, jobtitle, email if needed
 - minimum scopes: contact read scope only, unless the tool writes data
-- auth path: private app token for local developer testing or OAuth for reusable apps
+- auth path: Service Key for an eligible single-account system integration or OAuth for reusable apps
 - logging rule: do not log full contact records
 
 ## Prompt

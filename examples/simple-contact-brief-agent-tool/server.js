@@ -1,5 +1,11 @@
 const http = require('node:http');
 
+const HUBSPOT_API_VERSION = process.env.HUBSPOT_API_VERSION || '2026-09';
+
+if (!/^\d{4}-\d{2}$/.test(HUBSPOT_API_VERSION)) {
+  throw new Error('HUBSPOT_API_VERSION must use YYYY-MM format');
+}
+
 const PORT = Number(process.env.PORT || 3000);
 const USE_MOCK_DATA = String(process.env.USE_MOCK_DATA || 'true').toLowerCase() !== 'false';
 
@@ -61,9 +67,15 @@ const server = http.createServer(async (request, response) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Contact brief example listening on http://localhost:${PORT}`);
-});
+function startServer(port = PORT) {
+  return server.listen(port, () => {
+    console.log(`Contact brief example listening on http://localhost:${port}`);
+  });
+}
+
+if (require.main === module) startServer();
+
+module.exports = { server, startServer };
 
 function isAuthorized(request) {
   const expected = cleanText(process.env.AGENT_TOOL_SHARED_SECRET);
@@ -118,7 +130,7 @@ async function getContactFromHubSpot(contactId) {
     throw new Error('HUBSPOT_ACCESS_TOKEN is required when USE_MOCK_DATA=false');
   }
 
-  const url = new URL(`https://api.hubapi.com/crm/v3/objects/contacts/${encodeURIComponent(contactId)}`);
+  const url = new URL(`https://api.hubapi.com/crm/objects/${HUBSPOT_API_VERSION}/contacts/${encodeURIComponent(contactId)}`);
   url.searchParams.set('properties', 'firstname,lastname,company,lifecyclestage');
 
   const response = await fetch(url, {
@@ -159,4 +171,3 @@ function buildContactBrief(contact, briefType) {
     confidence: USE_MOCK_DATA ? 'sample' : 'medium'
   };
 }
-

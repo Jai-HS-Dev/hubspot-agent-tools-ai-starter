@@ -23,7 +23,7 @@ List the minimum data the tool needs. If it does not need CRM data, do not reque
 
 ## Step 3: Choose Auth
 
-For learning, a local private app token may be simpler. For a reusable public app or multi-customer flow, OAuth is usually the better pattern.
+For a new one-account system integration, evaluate a scoped Service Key after mock mode. For a reusable public app or multi-customer flow, OAuth is the correct pattern. Treat private app tokens as a legacy migration path.
 
 See `docs/choose-your-path.md`.
 
@@ -32,4 +32,3 @@ See `docs/choose-your-path.md`.
 Start with one tool, one action, one endpoint, and safe logs.
 
 Do not build broad CRM access until the smallest version works.
-

@@ -13,11 +13,13 @@ You are helping a user build HubSpot agent tools from this starter repo.
 - Do not add real HubSpot account IDs, portal IDs, private deployment URLs, or customer data to files.
 - Prefer minimal scopes and clear server-side boundaries.
 - Treat this as an educational starter, not a production-certified implementation.
+- Default new CRM calls to the documented `2026-09` date-based API and surface write `warnings`.
+- Prefer Service Keys for eligible single-account system integrations and OAuth for reusable or multi-account apps.
 
 ## Good First Workflow
 
 1. Ask what the agent tool should do.
-2. Ask whether the user wants OAuth, private-app-token testing, or help choosing.
+2. Ask whether the user needs mock mode, a Service Key, OAuth, or help choosing.
 3. Ask where the server endpoint should run.
 4. Create a small tool blueprint before writing implementation code.
 5. Add `.env.example` entries only with placeholders.
@@ -30,4 +32,3 @@ Tell users:
 ```text
 When a secret is needed, enter it in your terminal, local .env file, or hosting provider secret manager. Do not paste it here.
 ```
-
