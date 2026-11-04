@@ -44,6 +44,11 @@ This starter targets Developer Platform `2026.09`, date-based CRM API `2026-09`,
 
 Optional App Actions, Task Series, Activity Auto Associations, Agent Hub, and MCP recipes are in `docs/fall-2026-feature-recipes.md`.
 
+Node.js 22+ above describes local examples, not every managed HubSpot runtime.
+Workflow custom code now needs Node.js 24 async-return handlers. See
+`MIGRATION.md` for the November editing deadlines and `COMPATIBILITY.md` for
+the distinction between project functions, workflow actions, and external hosts.
+
 ## Pick Your Path
 
 ### I Am A Non-Developer
