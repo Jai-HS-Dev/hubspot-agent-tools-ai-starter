@@ -76,7 +76,7 @@ function startServer(port = PORT) {
     throw new Error('Live mode requires a server-side HUBSPOT_ACCESS_TOKEN');
   }
   return server.listen(port, '127.0.0.1', () => {
-    console.log(`Contact brief example listening on http://localhost:${port}`);
+    console.log(`Contact brief example listening on http://127.0.0.1:${server.address().port}`);
   });
 }
 

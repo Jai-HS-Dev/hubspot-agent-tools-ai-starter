@@ -35,3 +35,11 @@ POST /api/agent-tools/example
 - Do not log tokens or full CRM records.
 - Return helpful but limited errors.
 
+## Acceptance And Limits
+
+- Intended caller and permitted account/user/record:
+- One successful synthetic result:
+- Missing-input or denied result:
+- Files and tests to change:
+- Unsupported behavior and work still needed before an account trial:
+
