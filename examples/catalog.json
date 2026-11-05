@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-11-04",
+  "examples": [
+    {
+      "path": "examples/simple-contact-brief-agent-tool",
+      "status": "runnable-locally",
+      "localCheck": "smoke:example",
+      "note": "Mock HTTP endpoint; workflow/tool metadata is illustrative, not an installed tool.",
+      "liveAccountVerified": false,
+      "productionReady": false
+    }
+  ]
+}

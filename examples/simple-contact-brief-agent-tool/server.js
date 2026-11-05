@@ -7,7 +7,9 @@ if (!/^\d{4}-\d{2}$/.test(HUBSPOT_API_VERSION)) {
 }
 
 const PORT = Number(process.env.PORT || 3000);
-const USE_MOCK_DATA = String(process.env.USE_MOCK_DATA || 'true').toLowerCase() !== 'false';
+const mockSetting = process.env.USE_MOCK_DATA || 'true';
+if (!['true', 'false'].includes(mockSetting)) throw new Error('USE_MOCK_DATA must be true or false');
+const USE_MOCK_DATA = mockSetting === 'true';
 
 const server = http.createServer(async (request, response) => {
   try {
@@ -31,7 +33,7 @@ const server = http.createServer(async (request, response) => {
     const contactId = cleanText(inputFields.contactId);
     const briefType = cleanText(inputFields.briefType || 'sales');
 
-    if (!contactId) {
+    if (!/^[a-zA-Z0-9_-]{1,100}$/.test(contactId) || (!USE_MOCK_DATA && !/^\d+$/.test(contactId))) {
       return sendJson(response, 400, {
         hs_execution_state: 'FAIL_CONTINUE',
         outputFields: {
@@ -54,8 +56,7 @@ const server = http.createServer(async (request, response) => {
       outputFields
     });
   } catch (error) {
-    console.error('contact-brief failed:', error.message);
-    return sendJson(response, 500, {
+    return sendJson(response, error.statusCode || 502, {
       hs_execution_state: 'FAIL_CONTINUE',
       outputFields: {
         error: 'Unable to build contact brief right now.',
@@ -68,7 +69,13 @@ const server = http.createServer(async (request, response) => {
 });
 
 function startServer(port = PORT) {
-  return server.listen(port, () => {
+  if (!USE_MOCK_DATA && cleanText(process.env.AGENT_TOOL_SHARED_SECRET).length < 32) {
+    throw new Error('Live mode requires AGENT_TOOL_SHARED_SECRET of at least 32 characters');
+  }
+  if (!USE_MOCK_DATA && !cleanText(process.env.HUBSPOT_ACCESS_TOKEN)) {
+    throw new Error('Live mode requires a server-side HUBSPOT_ACCESS_TOKEN');
+  }
+  return server.listen(port, '127.0.0.1', () => {
     console.log(`Contact brief example listening on http://localhost:${port}`);
   });
 }
@@ -79,7 +86,7 @@ module.exports = { server, startServer };
 
 function isAuthorized(request) {
   const expected = cleanText(process.env.AGENT_TOOL_SHARED_SECRET);
-  if (!expected) return true;
+  if (!expected) return USE_MOCK_DATA;
 
   const provided = cleanText(request.headers['x-agent-tool-secret']);
   return provided && timingSafeEqual(provided, expected);
@@ -93,11 +100,22 @@ function timingSafeEqual(left, right) {
 }
 
 async function readJson(request) {
+  if (String(request.headers['content-type']).split(';')[0] !== 'application/json') {
+    throw Object.assign(new Error('Expected application/json'), { statusCode: 415 });
+  }
   const chunks = [];
-  for await (const chunk of request) chunks.push(chunk);
+  let size = 0;
+  for await (const chunk of request) {
+    size += chunk.length;
+    if (size > 8192) throw Object.assign(new Error('Request too large'), { statusCode: 413 });
+    chunks.push(chunk);
+  }
   const raw = Buffer.concat(chunks).toString('utf8');
   if (!raw.trim()) return {};
-  return JSON.parse(raw);
+  let value;
+  try { value = JSON.parse(raw); } catch { throw Object.assign(new Error('Invalid JSON'), { statusCode: 400 }); }
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw Object.assign(new Error('Expected object'), { statusCode: 400 });
+  return value;
 }
 
 function sendJson(response, statusCode, body) {
@@ -134,6 +152,8 @@ async function getContactFromHubSpot(contactId) {
   url.searchParams.set('properties', 'firstname,lastname,company,lifecyclestage');
 
   const response = await fetch(url, {
+    redirect: 'error',
+    signal: AbortSignal.timeout(10000),
     headers: {
       authorization: `Bearer ${token}`,
       accept: 'application/json'

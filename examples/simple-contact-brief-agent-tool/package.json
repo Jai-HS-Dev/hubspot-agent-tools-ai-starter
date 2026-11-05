@@ -4,7 +4,7 @@
   "private": true,
   "description": "Hosting-neutral HubSpot agent tool example with mock data by default.",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --env-file=.env server.js",
     "check": "node --check server.js && node --check src/app/workflow-actions/contact-brief.js"
   },
   "engines": {
