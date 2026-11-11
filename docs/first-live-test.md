@@ -54,7 +54,7 @@ If any box is unchecked, stop here. Nothing is wrong; you are simply not ready.
 ## Record The Result
 
 Keep the full note private. Add only a short, cleaned-up summary to
-[EVIDENCE.md](../EVIDENCE.md).
+[EVIDENCE.md](EVIDENCE.md).
 
 ```text
 Date:
@@ -82,5 +82,5 @@ Reading one test contact is a learning milestone. It is not an installed agent
 tool, not a security review and not approval for real customers. To create a
 real tool, follow HubSpot's guide to
 [creating an agent tool](https://developers.hubspot.com/docs/apps/developer-platform/add-features/agent-tools/create-an-agent-tool).
-Before real use, go through the [live-use checklist](../REAL_TOOL_CHECKLIST.md)
+Before real use, go through the [live-use checklist](REAL_TOOL_CHECKLIST.md)
 and [implementation responsibility](implementation-responsibility.md).

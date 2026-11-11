@@ -65,4 +65,4 @@ synthetic account testing. Preserve existing auth/hosting where appropriate.
 
 If setup or tests fail, use [troubleshooting](troubleshooting.md). Never paste
 secrets or customer records to get help. Report the actual test result and
-[remaining evidence limits](../EVIDENCE.md).
+[remaining evidence limits](EVIDENCE.md).

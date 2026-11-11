@@ -3,7 +3,7 @@
 **Example status:** Runnable locally.
 **Local check:** `npm run smoke:example` from the repository root, after the documented setup.
 **Developer-account verification:** Not verified.
-**Production prerequisites:** Review [the checklist](../../REAL_TOOL_CHECKLIST.md) and [evidence](../../EVIDENCE.md); no production implementation is included.
+**Production prerequisites:** Review [the checklist](../../docs/REAL_TOOL_CHECKLIST.md) and [evidence](../../docs/EVIDENCE.md); no production implementation is included.
 
 Mock HTTP endpoint; workflow/tool metadata is illustrative, not an installed tool.
 
@@ -18,7 +18,7 @@ This example shows the smallest useful shape of a HubSpot agent tool:
 The example uses mock data by default. That makes it safe for learning and easy for AI coding tools to adapt.
 
 This is a local, trusted-service endpoint, not an already installed HubSpot tool.
-See [evidence and support](../../EVIDENCE.md). It binds only to 127.0.0.1.
+See [evidence and support](../../docs/EVIDENCE.md). It binds only to 127.0.0.1.
 
 ## Files
 
