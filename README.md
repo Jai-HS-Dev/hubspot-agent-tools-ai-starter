@@ -43,8 +43,8 @@ In Windows PowerShell, use `npm.cmd` instead of `npm`.
 
 ## Make It Yours
 
-1. **Practice:** [Try the worked exercise](docs/worked-example.md). Adapt the contact brief for your own follow-up, using made-up data.
-2. **Verify in HubSpot when ready:** [Read one test contact](docs/first-live-test.md) from a HubSpot developer test account. This verifies a backend read, not an agent tool installed in HubSpot.
+1. **Build a sales handoff checker:** [Run the build-along](examples/sales-handoff-checker/README.md), change a rule label, and see how to wire it into a test workflow. The [contact brief exercise](docs/worked-example.md) is another local option.
+2. **Optional backend exercise:** [Read one test contact](docs/first-live-test.md) from a HubSpot developer test account. This tests a backend read; the handoff checker in step 1 does not need it.
 3. **Before real use:** Review the [live-use checklist](docs/REAL_TOOL_CHECKLIST.md). Approve the account, permissions, and action first. Never paste secrets into chat or commit them.
 
 Use this starter for something an agent should do. If people need a panel on a CRM record, [choose the card starter](docs/choose-your-path.md). Use [HubSpot's agent tool guide](https://developers.hubspot.com/docs/apps/developer-platform/add-features/agent-tools/create-an-agent-tool) to create the real tool. The sample definition files here are illustrations, not an uploadable app.
@@ -53,10 +53,14 @@ No specific AI editor or hosting provider is required. For account and authentic
 
 ## Tests And Help
 
+For production requirements, platform questions, or a complex build, see
+[where to get help](docs/SUPPORT.md#hubspot-questions-and-production-help).
+
 `npm test` checks the service and guidance without credentials or package installs. See [what was tested](docs/EVIDENCE.md), [troubleshooting](docs/troubleshooting.md), and the [plain-language glossary](docs/glossary.md). [Support](docs/SUPPORT.md) is best-effort. Use the [security policy](SECURITY.md) to report security issues without exposing private data.
 
 ## License And Responsibility
 
-[MIT License](LICENSE). This independent project is not endorsed by HubSpot.
+[MIT License](LICENSE). This project is independent: it is not affiliated
+with, endorsed by, or supported by HubSpot.
 The examples are not security-audited and are provided as is, without warranty. You are responsible for
 [validating, securing, and operating what you build](docs/implementation-responsibility.md).

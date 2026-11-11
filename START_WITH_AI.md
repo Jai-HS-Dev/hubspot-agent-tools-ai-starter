@@ -42,6 +42,8 @@ Show the sample brief and its suggested next step. A passing local response does
 
 **A later decision:** For an approved test-account read, use `docs/first-live-test.md`. Explain that a backend read and an installed agent tool are separate tests.
 
+**Build something:** [Build the sales handoff checker](examples/sales-handoff-checker/README.md) to try the rules in a draft workflow, then decide if a registered agent tool is needed.
+
 Report actual results separately from instructions or plans. See
 [what was tested](docs/EVIDENCE.md) for this starter's verification limits.
 

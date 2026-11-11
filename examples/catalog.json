@@ -3,6 +3,14 @@
   "reviewedOn": "2026-11-04",
   "examples": [
     {
+      "path": "examples/sales-handoff-checker",
+      "status": "runnable-locally",
+      "localCheck": "build:example",
+      "note": "Local decision logic with illustrative HubSpot action metadata; no hosted adapter included.",
+      "liveAccountVerified": false,
+      "productionReady": false
+    },
+    {
       "path": "examples/simple-contact-brief-agent-tool",
       "status": "runnable-locally",
       "localCheck": "smoke:example",

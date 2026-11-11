@@ -1,0 +1,43 @@
+{
+  "uid": "example_sales_handoff_checker",
+  "type": "workflow-action",
+  "config": {
+    "actionUrl": "https://your-host.example.com/api/sales-handoff",
+    "isPublished": false,
+    "supportedClients": [
+      { "client": "WORKFLOWS" },
+      {
+        "client": "AGENTS",
+        "toolType": "GET_DATA",
+        "llmConfig": { "actionDescription": "Check whether a sales handoff is ready. Pass yes or no for each confirmation. Do not guess missing answers." }
+      }
+    ],
+    "objectTypes": ["CONTACT"],
+    "inputFields": [
+      {
+        "typeDefinition": { "name": "ownerConfirmed", "type": "string", "fieldType": "text" },
+        "supportedValueTypes": ["STATIC_VALUE"],
+        "isRequired": false
+      },
+      {
+        "typeDefinition": { "name": "meetingDateConfirmed", "type": "string", "fieldType": "text" },
+        "supportedValueTypes": ["STATIC_VALUE"],
+        "isRequired": false
+      }
+    ],
+    "outputFields": [
+      { "typeDefinition": { "name": "decision", "type": "string" } },
+      { "typeDefinition": { "name": "missingItems", "type": "string" } }
+    ],
+    "labels": {
+      "en": {
+        "actionName": "Example Sales Handoff Checker",
+        "actionDescription": "Checks two handoff confirmations without changing records.",
+        "actionCardContent": "Check the follow-up owner and next meeting date.",
+        "inputFieldLabels": { "ownerConfirmed": "Owner confirmed?", "meetingDateConfirmed": "Meeting date confirmed?" },
+        "inputFieldDescriptions": { "ownerConfirmed": "Enter yes or no.", "meetingDateConfirmed": "Enter yes or no." },
+        "outputFieldLabels": { "decision": "Decision", "missingItems": "Missing items" }
+      }
+    }
+  }
+}
