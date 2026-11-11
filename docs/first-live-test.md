@@ -41,15 +41,16 @@ If any box is unchecked, stop here. Nothing is wrong; you are simply not ready.
    credential as `HUBSPOT_ACCESS_TOKEN`. Type them into the file yourself. Do not
    paste them into an AI chat, an issue or a screenshot.
 4. **Start the service and ask about your test contact.** Run `npm start` in the
-   example folder. It listens only on your own computer. Send one request with
+   example folder (`npm.cmd start` in Windows PowerShell). It listens only on
+   your own computer. Send one request with
    the test contact's numeric ID and the secret in the `x-agent-tool-secret`
    header. The example README shows the request shape.
 5. **Check the answer.** Success is a brief that names your made-up test contact
    with `confidence` set to `medium`. A request without the secret must be
    refused.
 6. **Stop the service** with Ctrl+C, then **write down what happened** using the
-   template below. If you are finished, delete the `.env` file and remove the
-   credential in HubSpot.
+   template below. Revoke a dedicated test credential only with the account
+   owner's approval. Do not delete or rotate a shared credential for this test.
 
 ## Record The Result
 
@@ -75,6 +76,12 @@ Leave out account IDs, people's names, keys, and screenshots of real records.
 Stop and read [troubleshooting](troubleshooting.md). Do not remove the secret
 check, ask for wider permissions, or move to your everyday business account to
 get past an error. Put the service back on made-up data with `USE_MOCK_DATA=true`.
+
+Check the two connections separately. If the example responds `401`, verify
+the local caller's shared secret and header name without printing either value.
+If the example accepted the caller but could not read the test contact, check
+the backend's HubSpot credential, selected account and read permission. Neither
+check requires you to paste credentials into chat.
 
 ## What This Does Not Prove
 
