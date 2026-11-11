@@ -1,156 +1,69 @@
 # HubSpot Agent Tools AI Starter
 
-Build a small service that gives a HubSpot agent or workflow useful information.
+Build a small tool that checks whether a sales handoff is ready and explains what is missing.
 
-**A practical blueprint for building and testing your own HubSpot integration,
-not a finished production app.**
-Start with made-up data, then connect a suitable HubSpot account to test your real
-feature. No coding experience is assumed; the guide helps you choose each next step.
+> [!NOTE]
+> **A guided starter, not a production integration.** You can practice without
+> a HubSpot account or credentials. To test inside HubSpot, use a developer
+> test account with made-up records.
 
-## What This Helps You Build
+**Sample result:** `Needs review` because the `next meeting date` is missing. The checker does not read or change any contact.
 
-Possible projects include a contact summary, a lookup in another system, or a follow-up suggestion. These are ideas to adapt, not installed features.
+## Pick Your Path
 
-**Your first result:** Run a sample contact-summary service with made-up data, then plan one small tool of your own. Nothing is installed in HubSpot.
+- **New to coding:** [Follow the walkthrough](docs/start-here.md), including what to install and where to type commands.
+- **Building with AI:** Paste the message below into your assistant. The [full AI walkthrough](START_WITH_AI.md) explains what to do if it can't open the repo or run commands.
+- **Developer:** [Code map](docs/developer-architecture.md) | [Request and response contract](docs/contracts/agent-tool-contract.md) | [Example files](examples/simple-contact-brief-agent-tool/README.md).
 
-## Choose Your Starting Point
+## Start With AI
 
-### I'm New To Coding
-
-Follow [the step-by-step walkthrough](docs/start-here.md). It explains how to
-open the project, where to type commands, what success looks like and how to stop.
-Your assistant should ask one plain-language question at a time.
-
-### I'm Building With AI
-
-Open this repository in your coding assistant and use the prompt below. Start
-with the same mock example before adapting a [feature recipe](recipes/README.md).
-
-### I'm A Developer
-
-Jump to [architecture](docs/developer-architecture.md), the
-[data contract](docs/contracts/agent-tool-contract.md) and the example README.
-The same safety and verification limits apply.
-
-## Start With Your AI Assistant
-
-Paste this into an assistant that can read the repository files:
+Copy this into your AI chat. Add your goal in plain English if you already have one.
 
 ```text
-Read README.md, AGENTS.md and START_WITH_AI.md.
-Help me build a HubSpot tool that [describe your goal].
-Start with the mock example. Ask one question at a time.
-Explain each command and its expected result before I run it.
-Never ask me to paste secrets or customer data.
-When I am ready for a HubSpot test, use docs/connect-to-hubspot.md.
-Help me choose an account, authentication and hosting without assuming I need OAuth.
-Ask for explicit approval before packages, account access, live writes or deployment.
+Help me use this HubSpot learning starter: https://github.com/Jai-HS-Dev/hubspot-agent-tools-ai-starter
+Read START_WITH_AI.md and AGENTS.md from the same version as my copy.
+If you can't open them, ask for those public files. Ask what I want to build,
+then guide me through the first local example with made-up data.
+Don't ask for secrets, connect an account, or deploy anything. This is a prototype, not a production integration.
 ```
 
-[START_WITH_AI.md](START_WITH_AI.md) has the fuller first-conversation prompt.
-[AGENTS.md](AGENTS.md) holds the canonical coding instructions; tool-specific files
-point there. You can use different AI editors; automatic instruction loading varies.
-No MCP connection is needed for the local example.
+## Try It Locally
 
-## Try The Safe Example
-
-A **mock** uses made-up data. You need Node.js and npm; the examples declare
-Node.js 22+, and the [walkthrough](docs/start-here.md) records the tested version
-and setup guidance. This describes local examples, not managed HubSpot runtimes.
-
-Download and extract the repository, then open a terminal in the folder containing
-`README.md` and `package.json`. Run:
+Install [Node.js 22 or newer](https://nodejs.org/en/download) if you don't have it.
+On GitHub, choose **Code > Download ZIP**, extract it, and open a terminal in
+the folder with this README. For a versioned copy, use a learning-starter ZIP
+from [Releases](https://github.com/Jai-HS-Dev/hubspot-agent-tools-ai-starter/releases) and share its matching AI prompt.
+No project packages need to be installed for this step.
 
 ```bash
 npm run doctor
-npm run smoke:example
+npm run build:example
 ```
 
-On Windows PowerShell, use:
+In Windows PowerShell, use `npm.cmd` instead of `npm`.
 
-```powershell
-npm.cmd run doctor
-npm.cmd run smoke:example
-```
+**Success looks like:** `Needs review` and `next meeting date` in the output.
 
-No `npm install`, credentials, HubSpot account or hosting is needed for this first
-check. The doctor should report `"ok": true`; the example should end with:
+## Make It Yours
 
-```text
-agent smoke example passed.
-```
+1. **Build a sales handoff checker:** [Run the build-along](examples/sales-handoff-checker/README.md), change a rule label, and see how to wire it into a test workflow. The [contact brief exercise](docs/worked-example.md) is another local option.
+2. **Optional backend exercise:** [Read one test contact](docs/first-live-test.md) from a HubSpot developer test account. This tests a backend read; the handoff checker in step 1 does not need it.
+3. **Before real use:** Review the [live-use checklist](docs/REAL_TOOL_CHECKLIST.md). Approve the account, permissions, and action first. Never paste secrets into chat or commit them.
 
-A local endpoint returned a sample contact brief. No real CRM data was read and no agent or workflow tool was installed.
-The check closes its local server automatically.
+Use this starter for something an agent should do. If people need a panel on a CRM record, [choose the card starter](docs/choose-your-path.md). Use [HubSpot's agent tool guide](https://developers.hubspot.com/docs/apps/developer-platform/add-features/agent-tools/create-an-agent-tool) to create the real tool. The sample definition files here are illustrations, not an uploadable app.
 
-If a command fails, stop and use [troubleshooting](docs/troubleshooting.md).
-Do not weaken security settings or enter live credentials to make it pass.
+No specific AI editor or hosting provider is required. For account and authentication choices, see the [connection guide](docs/connect-to-hubspot.md). [AGENTS.md](AGENTS.md) gives assistants instructions; it does not control their permissions.
 
-## Connect To HubSpot When You're Ready
+## Tests And Help
 
-The mock needs no account connection. Installing a card/tool or working with real
-HubSpot data does need a suitable account, permissions and authentication.
-Use [the connection guide](docs/connect-to-hubspot.md) to choose or create a
-separate developer test account, check feature availability, and plan OAuth or
-another supported option. Your assistant should explain the choices and ask
-approval before setup or connection. Test first; production is a separate decision.
+For production requirements, platform questions, or a complex build, see
+[where to get help](docs/SUPPORT.md#hubspot-questions-and-production-help).
 
-## What Is Included And What Isn't
+`npm test` checks the service and guidance without credentials or package installs. See [what was tested](docs/EVIDENCE.md), [troubleshooting](docs/troubleshooting.md), and the [plain-language glossary](docs/glossary.md). [Support](docs/SUPPORT.md) is best-effort. Use the [security policy](SECURITY.md) to report security issues without exposing private data.
 
-| Example | Status and limits |
-| --- | --- |
-| [Contact brief example](examples/simple-contact-brief-agent-tool/README.md) | Runnable locally: mock HTTP endpoint. Workflow/tool definitions are illustrative, not a complete installable project. |
+## License And Responsibility
 
-A real tool still needs a reviewed HubSpot caller adapter, account/user authorization, minimum permissions, hosting and developer-account tests. A service shared secret is for trusted server callers, never browser or card code.
-
-[Evidence](EVIDENCE.md) and the [example catalog](examples/catalog.json) distinguish
-local tests, illustrative code and remaining work. No example currently claims
-developer-account verification or production readiness.
-
-After the demo, follow one path: **describe your goal, run the mock, choose
-authentication/hosting only if needed, make one small change, verify**.
-Use the [blueprint](docs/agent-tool-blueprint.md) to plan that change.
-
-[Authentication choices](docs/auth-options.md) and
-[hosting choices](docs/hosting-options.md) explain alternatives, not ready-made
-adapters for every provider. [Check which starter you need](docs/choose-your-path.md);
-companion repositories are optional.
-
-## Safety Essentials
-
-1. Keep secrets and customer data out of AI chats, GitHub, screenshots and logs.
-   Keep credentials server-side, never in browser/card code.
-2. Use mock data first. Approve the exact account, minimum access and operation
-   before live access, writes, publishing or deployment.
-3. Passing local tests is not proof of security or production readiness.
-   Review the [live-use checklist](REAL_TOOL_CHECKLIST.md) before real use.
-
-Read [plain-English security guidance](docs/security-for-non-developers.md) and
-[the approval gates](docs/non-developer-safety-gates.md) for the full process.
-
-## Developer Reference
-
-For a small next step, try [the worked exercise](docs/worked-example.md).
-New terms are explained in [the glossary](docs/glossary.md).
-
-- [Architecture](docs/developer-architecture.md) and [contract](docs/contracts/agent-tool-contract.md).
-- [Compatibility and reviewed versions](COMPATIBILITY.md), [migration guidance](MIGRATION.md) and [upgrade notes](UPGRADE_NOTES.md).
-- [Optional feature recipes](docs/fall-2026-feature-recipes.md) and [verification evidence](EVIDENCE.md).
-
-After the selected example's documented setup, run `npm run check:ai`,
-`npm run check`, `npm test` and `npm run smoke:example` (use `npm.cmd` on Windows).
-Report skipped or failed checks; mock checks do not verify a live installation.
-
-## Help And License
-
-See [troubleshooting](docs/troubleshooting.md) and [support expectations](SUPPORT.md).
-Support is best-effort; report vulnerabilities through [SECURITY.md](SECURITY.md),
-without posting credentials or customer data.
-
-Licensed under [MIT](LICENSE); preserve the required copyright and license notices
-when reusing the code. The license contains warranty disclaimers and liability
-limitations. Builders remain responsible for implementation, testing, security,
-privacy and operation; see [implementation responsibility](docs/implementation-responsibility.md).
-
-This is an independent community starter, not affiliated with or endorsed by
-HubSpot, and not a security audit, legal advice or production guarantee.
+[MIT License](LICENSE). This project is independent: it is not affiliated
+with, endorsed by, or supported by HubSpot.
+The examples are not security-audited and are provided as is, without warranty. You are responsible for
+[validating, securing, and operating what you build](docs/implementation-responsibility.md).

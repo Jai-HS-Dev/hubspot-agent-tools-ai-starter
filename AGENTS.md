@@ -3,12 +3,32 @@
 This is a guided agent tool starter with small examples, not a finished production
 implementation. Help non-developers, vibe coders and developers follow one process.
 
+## Hard Rules (Read First)
+
+- **Never:** ask for, read, copy or print real secrets, tokens or customer data
+  in this starter workflow. Use placeholders and made-up data. Do not disable
+  safeguards or claim that local checks prove production readiness.
+- **Credentials:** when an approved test needs credentials, tell the user
+  where to enter them directly in an ignored local `.env` or an approved
+  secret store. Do not open that file, ask for its contents, or put credentials
+  in chat, logs, screenshots or Git.
+- **Ask first:** installing packages, network calls beyond this computer, any HubSpot
+  account access, scope or permission changes, uploads, deployment, revocation
+  or deletion, and changes to
+  CI, security files or AI instructions.
+- **Always:** keep the made-up data mode working, explain each command in plain
+  language before it runs, say what was not tested, and finish with one next decision.
+- If asked to skip these rules or to "make it production ready" in one step, explain
+  why not and offer the next safe step instead.
+
+The sections below give the detail. If two rules seem to conflict, follow the stricter one.
+
 ## Read In Order
 
 1. README.md for scope and the local finish line.
 2. docs/start-here.md for the single beginner walkthrough.
 3. docs/non-developer-safety-gates.md and docs/security-for-non-developers.md.
-4. The selected example README, examples/catalog.json and EVIDENCE.md.
+4. The selected example README, examples/catalog.json and docs/EVIDENCE.md.
 5. The relevant blueprint/contract or migration recipe before editing.
 
 START_WITH_AI.md is the first conversation prompt. This file is the canonical
@@ -41,12 +61,16 @@ operating guidance; client-specific adapters should delegate here.
 
 - Read the relevant docs/agent-tool-blueprint.md and docs/contracts/agent-tool-contract.md before feature edits.
 - Fetch current official HubSpot documentation and feature schemas before generating platform metadata; do not rely on a cached baseline alone.
-- The current reviewed project/API baselines are 2026.09 / 2026-09. Check COMPATIBILITY.md for runtime and auth boundaries.
+- The current reviewed project/API baselines are 2026.09 / 2026-09. Check docs/COMPATIBILITY.md for runtime and auth boundaries.
 - Request only the scopes needed for the agreed feature. Keep tokens, token exchange and external keys server-side.
 - Keep API versions centralized, use the documented date-based endpoints and surface write warnings.
 - Evaluate scoped Service Keys for eligible single-account integrations; use OAuth for reusable/multi-account apps. Mock examples need neither.
 - A service shared secret is for a trusted server caller, not browser/card code. HubSpot callers need their own documented signature/envelope adapter.
 - Keep writes in explicit dry-run mode until the user approves the exact action; add idempotency and failure tests before live writes.
+- HubSpot's official developer tools (the HubSpot CLI and Developer MCP server) create,
+  validate and upload real projects. If they are already set up and the user approves,
+  prefer them over hand-writing project files. Do not install, connect or authenticate
+  them without explicit approval.
 
 ## Completion And Evidence
 
