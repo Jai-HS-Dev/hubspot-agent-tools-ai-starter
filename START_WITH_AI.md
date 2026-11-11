@@ -9,8 +9,11 @@ credentials, an MCP connection or a hosting account for the first exercise.
 | Read project folders | Download the public repository ZIP, extract it, and open that folder in your coding tool. Then paste the prompt. |
 | Only read chat or attachments | Share the public `README.md`, `START_WITH_AI.md` and `AGENTS.md`. Share the public walkthrough if asked. Never attach a private project, `.env` file or CRM export. |
 
-If the assistant cannot run commands, it can still guide you. Run the local
-steps yourself and share only the success line or a sanitized error.
+Use the same version for your download and the files your assistant reads. If
+you downloaded a release ZIP, share its link to this prompt or use the public
+files from your extracted folder. Don't silently switch to the default branch.
+If the assistant cannot run commands, run them yourself and share only the
+success line or a sanitized error.
 
 ```text
 Help me use the HubSpot Agent Tools AI Starter. This is a guided starter, not a production integration.
@@ -21,7 +24,9 @@ say which file you need. Don't guess at repository commands or claim you ran the
 
 Start by asking me: "What should your tool help a HubSpot user do?"
 If I don't have an idea yet, offer the supplied example. Explain terms as needed.
-Use the local walkthrough with made-up data. Explain the command, where to run it,
+Use the first build-along in the local walkthrough. State my goal, the expected
+result, and what needs separate approval before any HubSpot or hosting step.
+Explain the command, where to run it,
 and the line or screen that means it worked. If I can't run it yet, help me plan
 from the example and mark the result as not run.
 
@@ -35,14 +40,14 @@ touch live data. Finish with what actually ran, what is still unverified, and
 one next decision.
 ```
 
-**Try saying:** "Give me a short brief on a made-up contact before I call them."
+**Try saying:** "Tell me whether a made-up sales handoff is ready and what is missing."
 
-**First finish line:** Run `npm run smoke:example` using [the walkthrough](docs/start-here.md).
-Show the sample brief and its suggested next step. A passing local response does not mean the tool is installed in HubSpot or can send email.
+**First finish line:** Run `npm run build:example` using [the walkthrough](docs/start-here.md).
+Look for `Needs review`. See why the sample handoff needs review, change one rule label, and check that the decision still makes sense. No tool is installed in HubSpot.
 
-**A later decision:** For an approved test-account read, use `docs/first-live-test.md`. Explain that a backend read and an installed agent tool are separate tests.
+**A later decision:** [Try the rules in an off draft workflow](examples/sales-handoff-checker/README.md#2-run-the-same-rules-in-a-draft-workflow) if the developer test account supports it. A registered Breeze tool needs a separate, signed endpoint test.
 
-**Build something:** [Build the sales handoff checker](examples/sales-handoff-checker/README.md) to try the rules in a draft workflow, then decide if a registered agent tool is needed.
+**Optional:** [Try the contact-brief backend mock](docs/worked-example.md) if you want a tool that looks up data.
 
 Report actual results separately from instructions or plans. See
 [what was tested](docs/EVIDENCE.md) for this starter's verification limits.

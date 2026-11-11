@@ -1,13 +1,13 @@
 # HubSpot Agent Tools AI Starter
 
-Build a small tool that turns a HubSpot contact into a short brief an agent can use to prepare for a conversation.
+Build a small tool that checks whether a sales handoff is ready and explains what is missing.
 
 > [!NOTE]
 > **A guided starter, not a production integration.** You can practice without
 > a HubSpot account or credentials. To test inside HubSpot, use a developer
 > test account with made-up records.
 
-**Sample result:** Ask for a brief on `sample-1`. The tool returns a made-up contact summary, a suggested follow-up, and `confidence: sample`. It does not send an email or change any record.
+**Sample result:** `Needs review` because the `next meeting date` is missing. The checker does not read or change any contact.
 
 ## Pick Your Path
 
@@ -21,8 +21,9 @@ Copy this into your AI chat. Add your goal in plain English if you already have 
 
 ```text
 Help me use this HubSpot learning starter: https://github.com/Jai-HS-Dev/hubspot-agent-tools-ai-starter
-Read START_WITH_AI.md and AGENTS.md. If you can't open them, tell me how to share the public starter files.
-Ask what I want to do, then guide me through one local example with made-up data.
+Read START_WITH_AI.md and AGENTS.md from the same version as my copy.
+If you can't open them, ask for those public files. Ask what I want to build,
+then guide me through the first local example with made-up data.
 Don't ask for secrets, connect an account, or deploy anything. This is a prototype, not a production integration.
 ```
 
@@ -30,16 +31,18 @@ Don't ask for secrets, connect an account, or deploy anything. This is a prototy
 
 Install [Node.js 22 or newer](https://nodejs.org/en/download) if you don't have it.
 On GitHub, choose **Code > Download ZIP**, extract it, and open a terminal in
-the folder with this README. No project packages need to be installed for this step.
+the folder with this README. For a versioned copy, use a learning-starter ZIP
+from [Releases](https://github.com/Jai-HS-Dev/hubspot-agent-tools-ai-starter/releases) and share its matching AI prompt.
+No project packages need to be installed for this step.
 
 ```bash
 npm run doctor
-npm run smoke:example
+npm run build:example
 ```
 
 In Windows PowerShell, use `npm.cmd` instead of `npm`.
 
-**Success looks like:** `agent smoke example passed.`
+**Success looks like:** `Needs review` and `next meeting date` in the output.
 
 ## Make It Yours
 
